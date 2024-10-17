@@ -97,6 +97,9 @@ http://localhost:8080
 
 ### Endpoints Principais
 
+- **Autenticação**
+  - `POST /auth/login`: Login com usuario e senha
+  - `POST /auth/registrar`: Cadastra um novo usuario com usuario, senha e role
 - **Clientes**
   - `GET /cliente`: Lista todos os clientes
   - `POST /cliente`: Cadastra um novo cliente
