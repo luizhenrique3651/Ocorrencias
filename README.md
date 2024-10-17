@@ -42,8 +42,8 @@ Este projeto é um sistema de gestão de ocorrências, desenvolvido com o objeti
 1. **Clone o repositório:**
 
    ```bash
-   git clone git clone --
-   cd seu-repositorio
+   git clone git clone https://github.com/luizhenrique3651/Ocorrencias.git
+   cd ocorrencias
    ```
 
 2. **Instale as dependências:**
