@@ -19,6 +19,7 @@ import com.luiz.ocorrencias.dto.ClienteRequestDTO;
 import com.luiz.ocorrencias.dto.ClienteResponseDTO;
 import com.luiz.ocorrencias.entity.Cliente;
 import com.luiz.ocorrencias.repository.ClienteRepository;
+import com.luiz.ocorrencias.service.ClienteService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -29,7 +30,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 public class ClienteController {
 
     @Autowired
-    ClienteRepository repository;
+    ClienteService repository;
 
     @Operation(summary = "Carrega todos os clientes", description = "Retorna uma lista de clientes.")
     @ApiResponses(value = {
@@ -77,7 +78,7 @@ public class ClienteController {
     public ResponseEntity<Void> deleteCliente(@PathVariable Long id) {
         Cliente clienteExistente = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
-        repository.delete(clienteExistente);
+        repository.delete(clienteExistente.getId());
         return ResponseEntity.noContent().build(); 
     }
 }

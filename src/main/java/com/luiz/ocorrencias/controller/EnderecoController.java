@@ -18,6 +18,7 @@ import com.luiz.ocorrencias.dto.EnderecoRequestDTO;
 import com.luiz.ocorrencias.dto.EnderecoResponseDTO;
 import com.luiz.ocorrencias.entity.Endereco;
 import com.luiz.ocorrencias.repository.EnderecoRepository;
+import com.luiz.ocorrencias.service.EnderecoService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -28,7 +29,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 public class EnderecoController {
 
     @Autowired
-    EnderecoRepository repository;
+    EnderecoService repository;
 
     @Operation(summary = "Carrega todos os endereços", description = "Retorna uma lista de endereços cadastrados.")
     @ApiResponses(value = {
@@ -79,7 +80,7 @@ public class EnderecoController {
     public ResponseEntity<Void> deleteEndereco(@PathVariable Long id) {
         Endereco enderecoExistente = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Endereço não encontrado"));
-        repository.delete(enderecoExistente);
+        repository.delete(enderecoExistente.getId());
         return ResponseEntity.noContent().build(); 
     }
 }

@@ -26,6 +26,9 @@ import com.luiz.ocorrencias.enums.StatusOcorrencia;
 import com.luiz.ocorrencias.repository.ClienteRepository;
 import com.luiz.ocorrencias.repository.EnderecoRepository;
 import com.luiz.ocorrencias.repository.OcorrenciaRepository;
+import com.luiz.ocorrencias.service.ClienteService;
+import com.luiz.ocorrencias.service.EnderecoService;
+import com.luiz.ocorrencias.service.OcorrenciaService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -36,11 +39,11 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 public class OcorrenciaController {
 
 	@Autowired
-	OcorrenciaRepository repository;
+	OcorrenciaService repository;
 	@Autowired
-	ClienteRepository clienteRepo;
+	ClienteService clienteRepo;
 	@Autowired
-	EnderecoRepository enderecoRepo;
+	EnderecoService enderecoRepo;
 	
 	@Operation(summary = "Carrega todas as ocorrências", description = "Retorna uma lista de ocorrências cadastradas.")
 	@ApiResponses(value = {
@@ -153,7 +156,7 @@ public class OcorrenciaController {
 	public ResponseEntity<Void> deleteOcorrencia(@PathVariable Long id) {
 		Ocorrencia ocorrenciaExistente = repository.findById(id)
 				.orElseThrow(() -> new RuntimeException("Ocorrência não encontrada"));
-		repository.delete(ocorrenciaExistente);
+		repository.delete(ocorrenciaExistente.getId());
         return ResponseEntity.noContent().build();
 	}
 	
