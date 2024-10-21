@@ -114,7 +114,7 @@ http://localhost:8080
 
 - **Ocorrências**
   - `GET /ocorrencia`: Lista todas as ocorrências
-  - `GET /ocorrencia/filtradas`: Lista todas as ocorrências
+  - `GET /ocorrencia/filtradas`: Lista todas as ocorrências filtradas
   - `POST /ocorrencia`: Cadastra uma nova ocorrência
   - `POST /ocorrencia/finalizar/{id}`: Seta uma ocorrência com status de finalizada.
   - `PUT /ocorrencia/{id}`: Atualiza uma ocorrência existente
