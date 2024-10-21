@@ -4,16 +4,12 @@
 ## Descrição
 
 Este projeto é um sistema de gestão de ocorrências, desenvolvido com o objetivo de permitir o cadastro, atualização e exclusão de ocorrências, clientes e endereços. A aplicação utiliza o Spring Framework para o backend, com uma estrutura RESTful e suporte para autenticação via JWT.
-## O que não foi feito de acordo com os requisitos?
+## O que falta ser feito a seguir?
 
 - Envio de imagens e hospedagem no Min.io
 - Containerização da aplicação
 
-### Motivo para não implementação dos requisitos:
 
-O motivo para não implementação dos requisitos se deu pelo tempo apertado, como trabalho durante o dia, fui respeitoso com meu compromisso no atual emprego e dediquei meu tempo durante a noite, após o horário de expediente. No entanto, com receio de entregar algo não feito 100% e que possa não funcionar como esperado, optei por usar o meu tempo para entregar o que pude na melhor forma possível, tentando agregar valor ao código.
-
-Ainda poderia adicionar mais validações, lançar exceções mais específicas, e melhorar a documentação no Swagger, caso tivesse mais tempo. Dentro do prazo solicitado, entreguei o meu melhor, mas estou disponível para discutir melhorias no código e explicar cada parte do projeto em detalhes, se necessário.
 
 
 ## Funcionalidades
@@ -46,8 +42,8 @@ Ainda poderia adicionar mais validações, lançar exceções mais específicas,
 1. **Clone o repositório:**
 
    ```bash
-   git clone git clone --
-   cd seu-repositorio
+   git clone git clone https://github.com/luizhenrique3651/Ocorrencias.git
+   cd ocorrencias
    ```
 
 2. **Instale as dependências:**
@@ -101,6 +97,9 @@ http://localhost:8080
 
 ### Endpoints Principais
 
+- **Autenticação**
+  - `POST /auth/login`: Login com usuario e senha
+  - `POST /auth/registrar`: Cadastra um novo usuario com usuario, senha e role
 - **Clientes**
   - `GET /cliente`: Lista todos os clientes
   - `POST /cliente`: Cadastra um novo cliente
@@ -117,6 +116,7 @@ http://localhost:8080
   - `GET /ocorrencia`: Lista todas as ocorrências
   - `GET /ocorrencia/filtradas`: Lista todas as ocorrências
   - `POST /ocorrencia`: Cadastra uma nova ocorrência
+  - `POST /ocorrencia/finalizar/{id}`: Seta uma ocorrência com status de finalizada.
   - `PUT /ocorrencia/{id}`: Atualiza uma ocorrência existente
   - `DELETE /ocorrencia/{id}`: Deleta uma ocorrência
 
