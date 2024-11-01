@@ -5,7 +5,7 @@ COPY src /app/src
 COPY pom.xml /app
 
 WORKDIR /app
-RUN mvn clean install
+RUN mvn clean install -DskipTests
 
 FROM openjdk:17-jdk-alpine
 

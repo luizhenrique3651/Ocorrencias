@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: ocorrencias
+  datasource:
+    url: jdbc:postgresql://postgres-db:5433/ocorrencias
+    username: luiz
+    password: luiz123
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+api:
+  security:
+    token:
+      secret: "minha-chave"
+
+flyway:
+  locations: classpath:db/migration

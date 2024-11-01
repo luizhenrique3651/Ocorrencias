@@ -1,16 +1,5 @@
 version: '3.8'
 services:
-  app:
-    build: .
-    ports:
-      - "8080:8080"
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5433/ocorrencias
-      SPRING_DATASOURCE_USERNAME: luiz
-      SPRING_DATASOURCE_PASSWORD: luiz123
-    depends_on:
-      - postgres-db
-
   postgres-db:
     image: postgres:13
     environment:
@@ -21,3 +10,20 @@ services:
       - "5433:5432"
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U luiz -d ocorrencias"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-db:5432/ocorrencias
+      SPRING_DATASOURCE_USERNAME: luiz
+      SPRING_DATASOURCE_PASSWORD: luiz123
+
+
+        
