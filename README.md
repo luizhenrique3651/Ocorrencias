@@ -35,10 +35,7 @@ Este projeto é um sistema de gestão de ocorrências, desenvolvido com o objeti
  - Maven
  - IDE de sua escolha (IntelliJ, Eclipse, etc.)
  - Banco de Dados PostgreSQL
- - Spring framework
- - Docker
- - Lombok
- - Swagger 
+ 
 
 
 ## Instalação
