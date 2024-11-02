@@ -3,11 +3,11 @@
 
 ## Descrição
 
-Este projeto é um sistema de gestão de ocorrências, desenvolvido com o objetivo de permitir o cadastro, atualização e exclusão de ocorrências, clientes e endereços. A aplicação utiliza o Spring Framework para o backend, com uma estrutura RESTful e suporte para autenticação via JWT.
+Este projeto é um sistema de gestão de ocorrências, desenvolvido com o objetivo de permitir o cadastro, atualização e exclusão de ocorrências, clientes e endereços. A aplicação utiliza o Spring Framework para o backend, com uma estrutura RESTful e suporte para autenticação via JWT. Tudo isso executado dentro de um container Docker.
 ## O que falta ser feito a seguir?
 
 - Envio de imagens e hospedagem no Min.io
-- Containerização da aplicação
+
 
 
 
@@ -35,6 +35,10 @@ Este projeto é um sistema de gestão de ocorrências, desenvolvido com o objeti
  - Maven
  - IDE de sua escolha (IntelliJ, Eclipse, etc.)
  - Banco de Dados PostgreSQL
+ - Spring framework
+ - Docker
+ - Lombok
+ - Swagger 
 
 
 ## Instalação
@@ -42,49 +46,33 @@ Este projeto é um sistema de gestão de ocorrências, desenvolvido com o objeti
 1. **Clone o repositório:**
 
    ```bash
-   git clone git clone https://github.com/luizhenrique3651/Ocorrencias.git
+   git clone https://github.com/luizhenrique3651/Ocorrencias.git
    cd ocorrencias
    ```
 
-2. **Instale as dependências:**
+2. **Configuração e execução com Docker:**
+
+   Com o Docker e Docker Compose instalados, execute o ambiente completo (banco de dados e aplicação) com o comando:
 
    ```bash
-   mvn install
+   docker-compose up -d
    ```
 
-3. **Configuração do Banco de Dados:**
+   Esse comando:
+   - Sobe um container com o PostgreSQL configurado com o banco de dados `ocorrencias` e as credenciais definidas.
+   - Inicializa o serviço da aplicação Spring Boot, conectando-o automaticamente ao banco de dados.
 
-   Configure o banco de dados no arquivo `application.properties`, é necessário ter um banco de dados postgree instalado:
+3. **Acessando a aplicação:**
 
-   ```properties
-    spring.application.name=ocorrencias
-    spring.datasource.url=jdbc:postgresql://localhost:5432/ocorrencias?createDatabaseIfNotExist=true
-    spring.datasource.username=SEUUSUARIO
-    spring.datasource.password=SUASENHA
-    spring.datasource.driver-class-name=org.postgresql.Driver
-    spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
-    api.security.token.secret=${JWT_SECRET:minha-chave-secreta-default}
-    flyway.locations=classpath:db/migration
-   ```
-   
-   Crie o database ocorrencia pelo seguinte script e o flyway cuidará do restante das tabelas:
-	```
-	DO $$
-	BEGIN
-		IF NOT EXISTS (
-			SELECT FROM pg_catalog.pg_database
-			WHERE datname = 'ocorrencias'
-		) THEN
-			CREATE DATABASE ocorrencias;
-		END IF;
-	END $$;
-	
-	
+   - A aplicação estará disponível em: [http://localhost:8080](http://localhost:8080)
+   - O banco de dados PostgreSQL estará disponível na porta `5433` localmente, caso precise acessá-lo diretamente.
 
-4. **Executando a aplicação:**
+4. **Parando o ambiente:**
+
+   Para desligar os containers, use:
 
    ```bash
-   mvn spring-boot:run
+   docker-compose down
    ```
 
 ## Uso da API
